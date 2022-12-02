@@ -7,8 +7,8 @@ import { CreateTodoButton } from './CreateTodoButton';
 // import './App.css';
 
 const defaultTodos = [
-  { text: 'lorem ipsum dolor sit amet usu ei laudem platonem 1', completed: true },
-  { text: 'lorem ipsum dolor sit amet usu ei laudem platonem 2', completed: true },
+  { text: 'lorem ipsum dolor sit amet usu ei laudem platonem 1', completed: false },
+  { text: 'lorem ipsum dolor sit amet usu ei laudem platonem 2', completed: false },
   { text: 'lorem ipsum dolor sit amet usu ei laudem platonem 3', completed: false },
   { text: 'lorem ipsum dolor sit amet usu ei laudem platonem 4', completed: false },
 ];
@@ -31,6 +31,20 @@ function App() {
     })
   }
 
+  const completeTodos = (text) => {
+    const todoIndex = todos.findIndex(todo => todo.text == text);
+    const newTodos = [...todos];
+    newTodos[todoIndex].completed = true;
+    setTodos(newTodos);
+  }
+
+  const deleteTodo = (text) => {
+    const todoIndex = todos.findIndex(todo => todo.text === text);
+    const newTodos = [...todos];
+    newTodos.splice(todoIndex, 1);
+    setTodos(newTodos);
+  };
+
   return (
     <React.Fragment>
       <TodoCounter
@@ -48,6 +62,8 @@ function App() {
             key={todo.text}
             text={todo.text}
             completed={todo.completed}
+            onComplete={()=> completeTodos(todo.text)}
+            onDelete={()=> deleteTodo(todo.text)}
           />
         ))}
       </TodoList>
