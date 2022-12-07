@@ -27,7 +27,7 @@ function TodoProvider(props) {
       return todoText.includes(searchText);
     });
   }
-  // Función para añadir un nuevo TODO
+
   const addTodo = (text) => {
     const newTodos = [...todos];
     newTodos.push({
