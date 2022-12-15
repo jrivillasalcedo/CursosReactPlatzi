@@ -24,8 +24,9 @@ function AppUI() {
     totalTodos, 
     completedTodos,
     searchValue, 
-    setSearchValue
-  } = React.useContext(TodoContext);
+    setSearchValue, 
+    addTodo
+    } = React.useContext(TodoContext);
   
   return (
     <React.Fragment>
@@ -60,7 +61,10 @@ function AppUI() {
 
       {!!openModal && (
         <Modal>
-          <TodoForm />
+          <TodoForm
+            addTodo={addTodo}
+            setOpenModal={setOpenModal}
+          />
         </Modal>
       )}
 
